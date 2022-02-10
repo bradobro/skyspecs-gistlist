@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "./SS.svg";
 import "./App.css";
+import Gistbox from "./components/gistbox";
 
 const App = () => {
   const [connected, setConnected] = useState(false);
@@ -29,7 +30,9 @@ const App = () => {
           Instructions
         </a>
         <p>Your Server is {connected ? "" : "not "}running</p>
+
       </header>
+      <Gistbox />
     </div>
   );
 };
