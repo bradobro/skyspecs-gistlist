@@ -12,7 +12,8 @@
   "dependencies": {
     "axios": "^0.25.0",
     "cors": "^2.8.5",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "pg-promise": "^10.11.1"
   },
   "devDependencies": {
     "prettier": "^2.5.1"
