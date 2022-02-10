@@ -1,8 +1,9 @@
-const express = require("express");
-const cors = require("cors");
-const PORT = 3010;
+import express from "express";
+import cors from "cors";
 
 const app = express();
+const PORT = 3010;
+
 app.use(cors());
 
 app.get("/", (req, res) => {
