@@ -1,14 +1,18 @@
 import pgPromise from "pg-promise"
+import dotenv from 'dotenv'
 
-// TODO: allow config via env vars
-const DB_USER = "postgres"
-const DB_PASS = "superSecretPassword"
-const DB_HOST = "localhost"
-const DB_PORT = "5432"
+dotenv.config()
+const {
+  POSTGRES_USER: DB_USER,
+  POSTGRES_PASSWORD: DB_PASS,
+  POSTGRES_HOST: DB_HOST,
+  POSTGRES_PORT: DB_PORT,
+  POSTGRES_DB: DB_NAME,
+} = process.env
 const CONFIG = {}
 
 const pgp = pgPromise(CONFIG)(
-  `postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/postgres`
+  `postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
 )
 
 function getAllFavoritesForUser(userID) {
