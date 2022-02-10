@@ -43,7 +43,11 @@ or
 yarn
 ```
 
-3. Run the application
+3. Configure your Environment (.env) file
+```shell
+cp .env.sample .env
+```
+4. Run the application
 
 ```bash
 npm run start
@@ -60,15 +64,20 @@ yarn start
 A quick way to get a database instance running:
 
 1. Install [docker](https://www.docker.com/)
-2. Run an instance of the official postgres docker image (and expose the port for connecting to it)
+2. Initialize the database by building the included image
 ```bash
-docker run --name my-pg -p 5432:5432 -e POSTGRES_PASSWORD=superSecretPassword -d postgres
+docker build -t my-postgres .
 ```
-3. (Optional) Verify the instance is running
+
+3. Start the DB container
+```bash
+docker run --name my-pg -p 5432:5432 --env-file .env -d my-postgres
+```
+4. _(Optional)_ Verify the instance is running
 ```bash
 docker ps # (You should see your instance named my-pg in the output)
 ```
-4. You should now be able to connect to your database using the connection string: `postgresql://postgres:superSecretPassword@localhost:5432/postgres`
+5. You should now be able to connect to your database using the connection string: `postgresql://postgres:superSecretPassword@localhost:5432/postgres`
 
 ### Client
 
