@@ -12,7 +12,7 @@ export function getFavorites(userID) {
   return api.get(`/gist/favorites`).then((response) => response.data)
 }
 
-export function setFavorite(userID, gistID) {
+export function addFavorite(userID, gistID) {
  return api.post(`/gist/${userID}/favorite/${gistID}`)
 }
 

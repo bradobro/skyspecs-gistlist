@@ -1,26 +1,15 @@
-import React, { useState } from "react";
-import { getListForUser } from "../services/api";
+import React, { useState } from "react"
+import { getListForUser } from "../services/api"
+import GistItem from "./gistitem";
 
-
-const Gistbox = () => {
+const GistList = () => {
   const [userID, setUserID] = useState(null)
   const [gists, setGists] = useState([])
 
   const listGists = () => {
     if (!userID) return
 
-    getListForUser(userID).then(data => setGists(data))
-  }
-
-  const setFavorite = (userID, gistID, isFavorite) => {
-    /* NYI:
-      WHEN TRUE:
-        call setFavorite from API
-        update state with list of favorites
-      WHEN FALSE:
-        call removeFavorite from API
-        update state
-     */
+    getListForUser(userID).then((data) => setGists(data))
   }
 
   /**
@@ -40,22 +29,23 @@ const Gistbox = () => {
 
   return (
     <div>
-      <input type="text" onChange={e => setUserID(e.target.value)} />
-      <button type="submit" onClick={listGists}>Go</button>
-      { // TODO: move to separate component
-        gists && gists.map(({ id: gistID, url, description, fileCount }) => {
-        return (
-          <div id={gistID}>
-            <p><a href={url} target="_blank">{url}</a></p>
-            <p>{description}</p>
-            <p>Files: {fileCount}</p>
-            <a onClick={setFavorite(userID, gistID, true)}>Favorite?</a>
-          </div>
-        )
-      })
-      }
+      <input type="text" onChange={(e) => setUserID(e.target.value)} />
+      <button type="submit" onClick={listGists}>
+        Go
+      </button>
+      {gists.map(({ id, url, description, fileCount }) => (
+        <GistItem
+          userID={userID}
+          gistID={id}
+          url={url}
+          description={description}
+          fileCount={fileCount}
+          // TODO: favorited
+        />
+      ))}
     </div>
   )
 }
 
-export default Gistbox
+GistList.propTypes = {}
+export default GistList

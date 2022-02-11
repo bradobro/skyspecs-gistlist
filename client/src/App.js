@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import logo from "./SS.svg";
-import "./App.css";
-import Gistbox from "./components/gistbox";
+import React, { useEffect, useState } from "react"
+import logo from "./SS.svg"
+import "./App.css"
+import GistList from "./components/gistlist";
 
 const App = () => {
-  const [connected, setConnected] = useState(false);
+  const [connected, setConnected] = useState(false)
   useEffect(() => {
     const timer = setInterval(
       async () =>
@@ -12,9 +12,9 @@ const App = () => {
           .then(() => setConnected(true))
           .catch((e) => setConnected(false)),
       1000
-    );
-    return () => clearInterval(timer);
-  }, []);
+    )
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <div className="App">
@@ -30,11 +30,10 @@ const App = () => {
           Instructions
         </a>
         <p>Your Server is {connected ? "" : "not "}running</p>
-
       </header>
-      <Gistbox />
+      <GistList />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
