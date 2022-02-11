@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import logo from "./SS.svg"
 import "./App.css"
-import GistList from "./components/gistlist";
+import { Link } from "react-router-dom"
 
 const App = () => {
   const [connected, setConnected] = useState(false)
@@ -30,8 +30,8 @@ const App = () => {
           Instructions
         </a>
         <p>Your Server is {connected ? "" : "not "}running</p>
+        <Link to="/gistlist">GistList</Link>
       </header>
-      <GistList />
     </div>
   )
 }
