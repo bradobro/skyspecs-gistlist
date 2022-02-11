@@ -8,8 +8,8 @@ export function getListForUser(userID) {
   return api.get(`/gist/list/${userID}`).then((response) => response.data)
 }
 
-export function getFavorites(userID) {
-  return api.get(`/gist/favorites`).then((response) => response.data)
+export function getFavoritesForUser(userID) {
+  return api.get(`/gist/${userID}/favorites`).then((response) => response.data)
 }
 
 export function addFavorite(userID, gistID) {

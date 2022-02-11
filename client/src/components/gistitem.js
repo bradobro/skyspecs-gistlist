@@ -12,10 +12,10 @@ const GistItem = ({
 }) => {
   const [isFavorite, setIsFavorite] = useState(favorited)
 
-  const setFavorite = (gistID) => {
+  const toggleFavorite = () => {
     const promise = isFavorite
-      ? addFavorite(userID, gistID)
-      : removeFavorite(userID, gistID)
+      ? removeFavorite(userID, gistID)
+      : addFavorite(userID, gistID)
 
     promise.then(() => setIsFavorite(!isFavorite))
   }
@@ -29,7 +29,7 @@ const GistItem = ({
       </p>
       <p>{description}</p>
       <p>Files: {fileCount}</p>
-      <a onClick={setFavorite}>{!isFavorite ? "Favorite" : "Unfavorite"}</a>
+      <button onClick={toggleFavorite}>{!isFavorite ? "Favorite" : "Unfavorite"}</button>
     </div>
   )
 }

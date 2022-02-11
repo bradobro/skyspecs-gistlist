@@ -1,15 +1,17 @@
 import React, { useState } from "react"
-import { getListForUser } from "../services/api"
+import { getFavoritesForUser, getListForUser } from "../services/api";
 import GistItem from "./gistitem";
 
 const GistList = () => {
   const [userID, setUserID] = useState(null)
   const [gists, setGists] = useState([])
+  const [favorites, setFavorites] = useState([])
 
   const listGists = () => {
     if (!userID) return
 
     getListForUser(userID).then((data) => setGists(data))
+    getFavoritesForUser(userID).then((data) => setFavorites(data))
   }
 
   /**
@@ -40,7 +42,7 @@ const GistList = () => {
           url={url}
           description={description}
           fileCount={fileCount}
-          // TODO: favorited
+          favorited={favorites.includes(id)}
         />
       ))}
     </div>
